@@ -1,0 +1,35 @@
+<!--It is property binding, if there is [value] = "something", it will search for something property, if use
+[value] = "'something'", it will show "something" word in output -->
+
+<!-- get user-input-- 2 ways--1) Local reference: add hashtag(#) in tag, example # #postInput -->
+<!-- example for both <textarea  rows="6" [value]="newPost" #postInput></textarea> -->
+<!-- 2) Two way binding: It has two directional flow -->
+<!--ngModel is directive, a instruction placed in html element, it will listen to user input and ommit that data to us and also store new data in text area, its works for both setting data and reading data-->
+<!---[(ngModel)]="enteredValue", it's binding with property-->
+<!-- ngModel directive without binding, it register  <input matInput type="text" ngModel> this input as a control to this behind the scene's form    -->
+
+<!-- #postForm="ngForm", it gives access to form object, #postForm is reference and ngForm is directive of form -->
+
+<!-- required, HTML 5 Validator -->
+<mat-card>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+      <mat-form-field>
+          <!-- #title="ngModel", it gives access to data manage for input field -->
+          <input matInput type="text" name="title" ngModel required minlength="3" placeholder="Post Title"  #title="ngModel">
+          <mat-error *ngIf="title.invalid">Please enter  a post title</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+        <textarea matInput  rows="6" name="content" ngModel required placeholder="Post Content" #content="ngModel"></textarea>
+        <mat-error *ngIf="content.invalid">Please enter  a content</mat-error>
+      </mat-form-field>
+
+      <hr>
+      <button mat-raised-button color="accent" type="submit">Save Data</button>
+
+
+  </form>
+
+
+</mat-card>
+<!-- {{}} - string interpolation- outputing content -->
+
